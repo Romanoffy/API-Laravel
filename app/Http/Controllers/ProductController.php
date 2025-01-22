@@ -104,7 +104,11 @@ class ProductController extends Controller
             $request->validate([
                 "photo" => 'required|image:jpg,jpeg,png|max:1024',
             ]);
+            $request->file('photo')->move(public_path("upload/product"), $data->photo_name);
         }
+
+    
+
 
       
             $data->product_name = $request->product_name;
@@ -133,7 +137,7 @@ class ProductController extends Controller
             ],404);
         }
 
-        File::delete(public_path("upload/product") . "/" . $data->product_image_name);
+        File::delete(public_path("upload/product") . "/" . $data->photo_name);
         $data->delete();
 
         return response([
