@@ -2,6 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/{patchMatch}', function () {
+    return view('app');
+})->where("patchMatch", '.*');
